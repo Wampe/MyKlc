@@ -9,7 +9,7 @@ using org.dmxc.lumos.Kernel.Plugin;
 namespace MyKlc.Plugin
 {
     /// <summary>
-    /// Main class for the (My) Kernel Light Control plugin for DMXControl 3.
+    /// Main class for the (My) Kernel Lightning Control plugin for DMXControl 3.
     /// It gets loaded and instantiated when the DMXControl Kernel gets started.
     /// </summary>
     public class MyKlcPlugin : KernelPluginBase
