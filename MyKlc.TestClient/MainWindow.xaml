@@ -1,0 +1,35 @@
+﻿<Window x:Class="MyKlc.TestClient.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MyKlc.TestClient"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="720" Width="1280">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <StackPanel>
+            <Button Click="LoadProject_Click" Content="Load Project" />
+            <Button Click="CloseProject_Click" Content="Close Project"/>
+            <Button Click="GetSceneLits_Click" Content="Get SceneLists"/>
+        </StackPanel>
+        <ListBox Grid.Column="1" x:Name="SceneListsBox" ItemContainerStyle="{DynamicResource ListBoxItemStyle1}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Text="{Binding Path=Name}" />
+                        <TextBlock Text="{Binding Path=Id}" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <StackPanel Grid.Column="2">
+            <Button Click="StartSceneList_Click" Content="Start Selected SceneList"/>
+            <Button Click="StopSceneList_Click" Content="Stop Selected SceneList"/>
+        </StackPanel>
+    </Grid>
+</Window>
