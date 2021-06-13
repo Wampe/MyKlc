@@ -4,6 +4,7 @@ using MyKlc.Plugin.Infrastructure.Projects;
 using MyKlc.Plugin.Infrastructure.Sockets;
 using MyKlc.Plugin.Infrastructure.Messages;
 using MyKlc.Plugin.Infrastructure.SceneLists;
+using MyKlc.Plugin.Infrastructure.Inputs;
 using org.dmxc.lumos.Kernel.Plugin;
 
 namespace MyKlc.Plugin
@@ -18,7 +19,8 @@ namespace MyKlc.Plugin
         private readonly KlcUdpSocket _socket;
         private readonly KlcProjectManager _projectManager;
         private readonly KlcSceneListManager _sceneListManager;
-       
+        private readonly KlcInputManager _inputManager;
+
         public MyKlcPlugin() : base(KlcConstants.PLUGIN_ID, KlcConstants.PLUGIN_NAME)
         {
             _logger = LumosLogger.getInstance(typeof(MyKlcPlugin));
@@ -28,6 +30,7 @@ namespace MyKlc.Plugin
 
             _projectManager = new KlcProjectManager();
             _sceneListManager = new KlcSceneListManager();
+            _inputManager = new KlcInputManager();
         }
 
         /// <summary>
@@ -36,7 +39,7 @@ namespace MyKlc.Plugin
         protected override void initializePlugin()
         {
             _logger.Info("Initialize");
-            _socket.CreateServer();    
+            _socket.CreateServer();
         }
 
         /// <summary>
@@ -87,6 +90,21 @@ namespace MyKlc.Plugin
                     break;
                 case KlcAction.StopSceneList:
                     _sceneListManager.StopSceneList(message);
+                    break;
+                case KlcAction.LoadInputBanks:
+                    _socket.SendToClient(
+                        new KlcMessage
+                        {
+                            Action = KlcAction.LoadInputBanks,
+                            Payload = _inputManager.GetBanks()
+                        }
+                    );
+                    break;
+                case KlcAction.ActivateInputBank:
+                    _inputManager.ActivateBank(message);
+                    break;
+                case KlcAction.DeactivateInputBank:
+                    _inputManager.DeactivateBank(message);
                     break;
             }
         }

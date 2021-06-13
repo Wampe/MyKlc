@@ -1,4 +1,5 @@
 ﻿using Microsoft.Win32;
+using MyKlc.Plugin.Infrastructure.Inputs;
 using MyKlc.Plugin.Infrastructure.Messages;
 using MyKlc.Plugin.Infrastructure.SceneLists;
 using MyKlc.Plugin.Infrastructure.Sockets;
@@ -30,6 +31,14 @@ namespace MyKlc.TestClient
                 Dispatcher.BeginInvoke(new Action(delegate ()
                 {
                     SceneListsBox.ItemsSource = message.Payload as IList<KlcSceneList>;
+                }));
+            }
+
+            if(message.Action == KlcAction.LoadInputBanks)
+            {
+                Dispatcher.BeginInvoke(new Action(delegate ()
+                {
+                    InputBanksBox.ItemsSource = message.Payload as IList<KlcBank>;
                 }));
             }
         }
@@ -78,6 +87,32 @@ namespace MyKlc.TestClient
             {
                 Action = KlcAction.StopSceneList,
                 Payload = SceneListsBox.SelectedItem
+            });
+        }
+
+        private void GetInputBanks_Click(object sender, RoutedEventArgs e)
+        {
+            _socket.SendToServer(new KlcMessage
+            {
+                Action = KlcAction.LoadInputBanks
+            });
+        }
+
+        private void ActivateBank_Click(object sender, RoutedEventArgs e)
+        {
+            _socket.SendToServer(new KlcMessage
+            {
+                Action = KlcAction.ActivateInputBank,
+                Payload = InputBanksBox.SelectedItem
+            });
+        }
+
+        private void DeactivateBank_Click(object sender, RoutedEventArgs e)
+        {
+            _socket.SendToServer(new KlcMessage
+            {
+                Action = KlcAction.DeactivateInputBank,
+                Payload = InputBanksBox.SelectedItem
             });
         }
     }

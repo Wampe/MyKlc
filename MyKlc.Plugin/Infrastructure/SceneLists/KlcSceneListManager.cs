@@ -48,7 +48,7 @@ namespace MyKlc.Plugin.Infrastructure.SceneLists
 
         private ISceneList GetSceneList(KlcMessage message)
         {
-            var sceneList= message.Payload as KlcSceneList;
+            var sceneList = message.Payload as KlcSceneList;
             return _sceneListManager.GetSceneListByID(sceneList.Id);
         }
     }

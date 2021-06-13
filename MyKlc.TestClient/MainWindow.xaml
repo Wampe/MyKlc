@@ -3,7 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:MyKlc.TestClient"
         mc:Ignorable="d"
         Title="MainWindow" Height="720" Width="1280">
     <Grid>
@@ -16,20 +15,40 @@
             <Button Click="LoadProject_Click" Content="Load Project" />
             <Button Click="CloseProject_Click" Content="Close Project"/>
             <Button Click="GetSceneLits_Click" Content="Get SceneLists"/>
+            <Button Click="GetInputBanks_Click" Content="Get Input Banks"/>
         </StackPanel>
-        <ListBox Grid.Column="1" x:Name="SceneListsBox" ItemContainerStyle="{DynamicResource ListBoxItemStyle1}">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel>
-                        <TextBlock Text="{Binding Path=Name}" />
-                        <TextBlock Text="{Binding Path=Id}" />
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+        <Grid Grid.Column="1" >
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <ListBox x:Name="SceneListsBox" >
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <TextBlock Text="{Binding Path=Name}" />
+                            <TextBlock Text="{Binding Path=Id}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <ListBox x:Name="InputBanksBox" Grid.Row="1">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <TextBlock Text="{Binding Path=Name}" />
+                            <TextBlock Text="{Binding Path=Id}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Grid>
+        
         <StackPanel Grid.Column="2">
             <Button Click="StartSceneList_Click" Content="Start Selected SceneList"/>
             <Button Click="StopSceneList_Click" Content="Stop Selected SceneList"/>
+            <Button Click="ActivateBank_Click" Content="Activate Bank" />
+            <Button Click="DeactivateBank_Click" Content="Deactivate Bank" />
         </StackPanel>
     </Grid>
 </Window>

@@ -47,6 +47,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Infrastructure\Inputs\KlcBank.cs" />
+    <Compile Include="Infrastructure\Inputs\KlcGraph.cs" />
+    <Compile Include="Infrastructure\Inputs\KlcInputManager.cs" />
     <Compile Include="Infrastructure\KlcConstants.cs" />
     <Compile Include="Infrastructure\Messages\KlcMessageEventHandler.cs" />
     <Compile Include="Infrastructure\Projects\KlcProjectManager.cs" />

@@ -9,6 +9,9 @@ namespace MyKlc.Plugin.Infrastructure.Messages
         CloseProject,
         LoadSceneLists,
         RunSceneList,
-        StopSceneList
+        StopSceneList,
+        LoadInputBanks,
+        ActivateInputBank,
+        DeactivateInputBank
     }
 }
