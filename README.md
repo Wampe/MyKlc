@@ -13,3 +13,6 @@ This plugin provides a UDP socket transfer based communication between the DMXCo
 - LoadSceneLists
 - RunSceneList
 - StopSceneList
+- LoadInputBanks
+- ActivateInputBank
+- DeactivateInputBank
